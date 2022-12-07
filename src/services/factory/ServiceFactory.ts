@@ -1,7 +1,9 @@
 import { HandlerBusinessFactory } from "src/business-layer/factories/HandlerBusinessFactory";
 import { IHandlerBusinessFactory } from "src/business-layer/interfaces/factories/IHandlerBusinessFactory";
 import { DataSource } from "typeorm";
+import { FilesService } from "../files/FilesService";
 import { IServiceFactory } from "../interfaces/factory/IServiceFactory";
+import { IFilesService } from "../interfaces/files/IFilesService";
 import { IServiceService } from "../interfaces/service/IServiceService";
 import { ISpaceService } from "../interfaces/space/ISpaceService";
 import { ITokenService } from "../interfaces/token/ITokenService";
@@ -19,6 +21,10 @@ export class ServiceFactory implements IServiceFactory {
     constructor(dataSource: DataSource) {
         
         this._handlerBusinessFactory = new HandlerBusinessFactory(dataSource, this);
+    }
+    
+    get IFilesService (): IFilesService {
+        return new FilesService();
     }
 
     get IServiceService(): IServiceService {

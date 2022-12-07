@@ -24,7 +24,8 @@ export class SpaceRepository implements ISpaceRepository {
                    imageUrl: sp.imageUrl,
                    location: sp.location,
                    mapsUrl: sp.mapsUrl,
-                   name: sp.name
+                   name: sp.name,
+                   active: sp.active
                 }
                 spaces.push(space);
             })
@@ -51,7 +52,8 @@ export class SpaceRepository implements ISpaceRepository {
                 imageUrl: result.imageUrl,
                 location: result.location,
                 mapsUrl: result.mapsUrl,
-                name: result.name
+                name: result.name,
+                active: result.active
             }
             return space;
         }
@@ -71,7 +73,8 @@ export class SpaceRepository implements ISpaceRepository {
             imageUrl: entity.imageUrl,
             location: entity.location,
             mapsUrl: entity.mapsUrl,
-            name: entity.name
+            name: entity.name,
+            active: entity.active
         } as DtoSpace;
 
         const runner = this._runners[this._transaction];
@@ -88,7 +91,8 @@ export class SpaceRepository implements ISpaceRepository {
             imageUrl: entity.imageUrl,
             location: entity.location,
             mapsUrl: entity.mapsUrl,
-            name: entity.name
+            name: entity.name,
+            active: entity.active
         } as DtoSpace;
 
         const runner = this._runners[this._transaction];

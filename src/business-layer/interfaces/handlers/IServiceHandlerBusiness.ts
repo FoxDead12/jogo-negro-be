@@ -1,5 +1,5 @@
 export interface IServiceHandlerBusiness {
-    CreateServiceHandlerStrategy(name: string, imageUrl: string): Promise<void>;
-    EditServiceHandlerStrategy(name: string, imageUrl: string, id: number): Promise<void>;
+    CreateServiceHandlerStrategy(name: string, imageUrl: string, active: boolean): Promise<void>;
+    EditServiceHandlerStrategy(name: string, imageUrl: string, active: boolean, id: number): Promise<void>;
     DeleteServiceHandlerStrategy(id: number): Promise<void>;
 }

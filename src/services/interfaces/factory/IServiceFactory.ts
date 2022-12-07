@@ -1,3 +1,4 @@
+import { IFilesService } from "../files/IFilesService";
 import { IServiceService } from "../service/IServiceService";
 import { ISpaceService } from "../space/ISpaceService";
 import { ITokenService } from "../token/ITokenService";
@@ -8,5 +9,6 @@ export interface IServiceFactory {
     ITokenService: ITokenService;
     IUserService: IUserService;
     ISpaceService: ISpaceService;
-    IServiceService: IServiceService
+    IServiceService: IServiceService;
+    IFilesService: IFilesService;
 }

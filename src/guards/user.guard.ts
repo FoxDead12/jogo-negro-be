@@ -13,7 +13,6 @@ export class UserGuard implements CanActivate {
         const request = context.switchToHttp().getRequest() as Request;
         const token = request.cookies['token'];
         
-        console.log(token)
         try {
             if(token) {
                 

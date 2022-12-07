@@ -17,4 +17,7 @@ export class DtoSpace {
 
     @Column()
     mapsUrl: string;
+
+    @Column({default: false})
+    active: boolean;
 }

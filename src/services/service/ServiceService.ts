@@ -3,9 +3,9 @@ import { IServiceService } from "../interfaces/service/IServiceService";
 
 export class ServiceService extends BaseService implements IServiceService {
     
-    async EditService(name: string, imageUrl: string, id: number): Promise<void> {
+    async EditService(name: string, imageUrl: string, active: boolean, id: number): Promise<void> {
         const strategy = this._handlerBusinessFactory.IServiceHandlerBusiness;
-        const result = await strategy.EditServiceHandlerStrategy(name, imageUrl, id);
+        const result = await strategy.EditServiceHandlerStrategy(name, imageUrl, active, id);
     }
 
     async DeleteService(id: number): Promise<void> {
@@ -13,10 +13,10 @@ export class ServiceService extends BaseService implements IServiceService {
         const result = await strategy.DeleteServiceHandlerStrategy(id);
     }
     
-    async CreateService(name: string, imageUrl: string): Promise<void> {
+    async CreateService(name: string, imageUrl: string, active: boolean): Promise<void> {
         
         const strategy = this._handlerBusinessFactory.IServiceHandlerBusiness;
-        const result = await strategy.CreateServiceHandlerStrategy(name, imageUrl);
+        const result = await strategy.CreateServiceHandlerStrategy(name, imageUrl, active);
     }
 
 }

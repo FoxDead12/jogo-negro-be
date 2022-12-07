@@ -5,7 +5,7 @@ import { IBaseBaseBusinessFactory } from "./IBaseBaseBusinessFactory";
 
 export interface IBusinessFactory extends IBaseBaseBusinessFactory{
     
-    Space(name: string, location: string, imageUrl: string, mapsUrl: string, id?: number): ISpace;
-    Service(name: string, imageUrl: string, id?: number): IService;
+    Space(name: string, location: string, imageUrl: string, mapsUrl: string, active: boolean, id?: number): ISpace;
+    Service(name: string, imageUrl: string, active: boolean, id?: number): IService;
     User(name: string, email: string, password: string, idUser: string): IUser;
 }

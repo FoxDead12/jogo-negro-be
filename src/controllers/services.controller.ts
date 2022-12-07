@@ -17,7 +17,7 @@ export class ServiceController {
     Create(@Body() req) {
 
         const service = this.DI.servicesFactory.IServiceService;
-        return service.CreateService(req.name, req.imageUrl);
+        return service.CreateService(req.name, req.imageUrl, req.active);
     }
 
     @UseGuards(UserGuard)
@@ -25,7 +25,7 @@ export class ServiceController {
     Edit(@Body() req) {
 
         const service = this.DI.servicesFactory.IServiceService;
-        return service.EditService(req.name, req.imageUrl, req.id);
+        return service.EditService(req.name, req.imageUrl, req.active, req.id);
     }
     
     @UseGuards(UserGuard)

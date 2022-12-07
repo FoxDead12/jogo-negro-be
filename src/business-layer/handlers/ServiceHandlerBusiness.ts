@@ -3,10 +3,10 @@ import { BaseHandlerBusiness } from "./BaseHandlerBusiness";
 
 export class ServiceHandlerBusiness extends BaseHandlerBusiness implements IServiceHandlerBusiness {
     
-    async EditServiceHandlerStrategy(name: string, imageUrl: string, id: number): Promise<void> {
+    async EditServiceHandlerStrategy(name: string, imageUrl: string, active: boolean, id: number): Promise<void> {
         await this.BaseHandler(async (transaction) => {
             
-            const service = this._businessFactory.Service(name, imageUrl, id);
+            const service = this._businessFactory.Service(name, imageUrl, active, id);
             const serviceExist = await this._repositoriesFactory.IServiceRepository.GetEntity(id);
             if(!serviceExist) {
                 throw new Error("SERVICE DOESNT EXIST!")
@@ -28,10 +28,10 @@ export class ServiceHandlerBusiness extends BaseHandlerBusiness implements IServ
         })
     }
     
-    async CreateServiceHandlerStrategy(name: string, imageUrl: string): Promise<void> {
+    async CreateServiceHandlerStrategy(name: string, imageUrl: string, active: boolean): Promise<void> {
         await this.BaseHandler(async (transaction) => {
             
-            const service = this._businessFactory.Service(name, imageUrl);
+            const service = this._businessFactory.Service(name, imageUrl, active);
             await this._repositoriesFactory.IServiceRepository.AddEntity(service);
         })
     }

@@ -3,7 +3,7 @@ import { ISpaceHandlerBusiness } from "../interfaces/handlers/ISpaceHandlerBusin
 import { BaseHandlerBusiness } from "./BaseHandlerBusiness";
 
 export class SpaceHandlerBusiness extends BaseHandlerBusiness implements ISpaceHandlerBusiness {
-    
+       
     async GetAllHandlerStrategy(): Promise<ISpace[]> {
         let result: ISpace[];
 
@@ -25,10 +25,10 @@ export class SpaceHandlerBusiness extends BaseHandlerBusiness implements ISpaceH
         })
     }
     
-    async EditSpaceHandlerStrategy(name: string, location: string, imageUrl: string, mapsUrl: string, id: number): Promise<void> {
+    async EditSpaceHandlerStrategy(name: string, location: string, imageUrl: string, mapsUrl: string, active: boolean, id: number): Promise<void> {
         await this.BaseHandler(async (transaction) => {
 
-            const space = this._businessFactory.Space(name, location, imageUrl, mapsUrl, id);
+            const space = this._businessFactory.Space(name, location, imageUrl, mapsUrl, active, id);
             const spaceExist = await this._repositoriesFactory.ISpaceRepository.GetEntity(space._id);
             if(!spaceExist) {
                 throw new Error("SPACE DOESNT EXIST!")
@@ -38,10 +38,10 @@ export class SpaceHandlerBusiness extends BaseHandlerBusiness implements ISpaceH
         })
     }
     
-    async CreateSpaceHandlerStrategy(name: string, location: string, imageUrl: string, mapsUrl: string): Promise<void> {
+    async CreateSpaceHandlerStrategy(name: string, location: string, imageUrl: string, mapsUrl: string, active: boolean): Promise<void> {
         await this.BaseHandler(async (transaction) => {
 
-            const space = this._businessFactory.Space(name, location, imageUrl, mapsUrl);
+            const space = this._businessFactory.Space(name, location, imageUrl, mapsUrl, active);
             await this._repositoriesFactory.ISpaceRepository.AddEntity(space);
         })
     }

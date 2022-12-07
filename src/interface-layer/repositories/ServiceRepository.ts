@@ -26,7 +26,8 @@ export class ServiceRepository implements IServiceRepository {
             const service: IService = {
                 id: result.id,
                 imageUrl: result.imageUrl,
-                name: result.name
+                name: result.name,
+                active: result.active
             }
 
             return service;
@@ -44,7 +45,8 @@ export class ServiceRepository implements IServiceRepository {
         const dto = {
             id: null,
             imageUrl: entity.imageUrl,
-            name: entity.name
+            name: entity.name,
+            active: entity.active
         } as DtoService
 
         const runner = this._runners[this._transaction];
@@ -59,7 +61,8 @@ export class ServiceRepository implements IServiceRepository {
         const dto = {
             id: entity.id,
             imageUrl: entity.imageUrl,
-            name: entity.name
+            name: entity.name,
+            active: entity.active
         } as DtoService
 
         const runner = this._runners[this._transaction];

@@ -5,4 +5,5 @@ export interface ISpace {
     location: string
     imageUrl: string
     mapsUrl: string;
+    active: boolean;
 }

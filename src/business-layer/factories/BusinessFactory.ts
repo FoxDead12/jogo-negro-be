@@ -13,11 +13,11 @@ export class BusinessFactory extends BaseBusinessFactory implements IBusinessFac
         return new User(name, email, password, idUser);
     }
 
-    Service(name: string, imageUrl: string, id?: number): IService {
-        return new Service(name, imageUrl, id)
+    Service(name: string, imageUrl: string, active: boolean, id?: number): IService {
+        return new Service(name, imageUrl, active, id)
     }
     
-    Space(name: string, location: string, imageUrl: string, mapsUrl: string, id?: number): ISpace {
-        return new Space(name, location, imageUrl, mapsUrl, id);
+    Space(name: string, location: string, imageUrl: string, mapsUrl: string, active: boolean, id?: number): ISpace {
+        return new Space(name, location, imageUrl, mapsUrl, active, id);
     }
 }

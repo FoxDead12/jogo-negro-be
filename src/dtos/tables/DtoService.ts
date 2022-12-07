@@ -11,4 +11,7 @@ export class DtoService {
 
     @Column()
     imageUrl: string;
+
+    @Column({default: false})
+    active: boolean;
 }

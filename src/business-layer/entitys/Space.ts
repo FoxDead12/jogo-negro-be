@@ -7,12 +7,14 @@ export class Space implements ISpace {
     public location: string
     public imageUrl: string
     public mapsUrl: string;
+    public active: boolean;
 
     constructor(
         name: string,
         location: string,
         imageUrl: string,
         mapsUrl: string,
+        active: boolean,
         id?: number
     ) {
 
@@ -20,6 +22,7 @@ export class Space implements ISpace {
        this.location = location;
        this.imageUrl = imageUrl;
        this.mapsUrl = mapsUrl; 
+       this.active = active;
 
         if(id) {
             this._id = id;

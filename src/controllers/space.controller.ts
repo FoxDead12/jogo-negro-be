@@ -19,7 +19,7 @@ export class SpaceController {
     Create(@Body() req) {
         
         const service = this.DI.servicesFactory.ISpaceService;
-        return service.CreateSpace(req.name, req.location, req.imageUrl, req.mapsUrl);
+        return service.CreateSpace(req.name, req.location, req.imageUrl, req.mapsUrl, req.active);
     }
 
     @UseGuards(UserGuard)
@@ -27,7 +27,7 @@ export class SpaceController {
     Edit(@Body() req) {
 
         const service = this.DI.servicesFactory.ISpaceService;
-        return service.EditSpace(req.name, req.location, req.imageUrl, req.mapsUrl, req.id);
+        return service.EditSpace(req.name, req.location, req.imageUrl, req.mapsUrl, req.active, req.id);
     }
 
     @UseGuards(UserGuard)

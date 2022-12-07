@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
+import { join } from 'path';
 
 const port = 3301
 
@@ -12,6 +13,7 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: 'Set-Cookie'
   });
+
   await app.listen(port);
 }
 
