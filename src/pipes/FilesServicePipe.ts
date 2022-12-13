@@ -7,9 +7,11 @@ export class FilesServicePipe implements PipeTransform<Express.Multer.File, Prom
     
     async transform(image: Express.Multer.File, metadata: ArgumentMetadata): Promise<string> {
 
-        const validTypes = ["png", "jpg", "jpge"];
+        const validTypes = ["png", "jpg", "jpeg"];
         const typeImage = image.mimetype.split("/")[1];
-        
+
+        console.log(image)
+
         if(!validTypes.includes(typeImage)) {
             throw new NotAcceptableException();
         }

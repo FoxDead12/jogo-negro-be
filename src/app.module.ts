@@ -11,15 +11,16 @@ import { MulterModule } from '@nestjs/platform-express';
 import { memoryStorage } from 'multer';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { TextsController } from './controllers/texts.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
     MulterModule.register({
       storage: memoryStorage()
-    }),
+    })
   ],
-  controllers: [UserController, SpaceController, ServiceController, FilesController],
+  controllers: [UserController, SpaceController, ServiceController, FilesController, TextsController],
   providers: [DI],
 })
 

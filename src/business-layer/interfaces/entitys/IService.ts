@@ -1,6 +1,6 @@
 export interface IService {
     
-    id: number;
+    _id: number;
     name: string;
     imageUrl: string;
     active: boolean;

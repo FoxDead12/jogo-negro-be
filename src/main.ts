@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { join } from 'path';
+import * as express from 'express';
 
 const port = 3301
 
@@ -13,7 +14,7 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: 'Set-Cookie'
   });
-
+  app.use('/uploads', express.static(join(__dirname, '../../', 'uploads')))
   await app.listen(port);
 }
 

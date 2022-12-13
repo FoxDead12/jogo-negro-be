@@ -1,7 +1,5 @@
-import { Controller, Delete, FileTypeValidator, Get, Param, ParseFilePipe, Post, Res, StreamableFile, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
+import { Controller, Delete, FileTypeValidator, Get, Param, ParseFilePipe, Post, Res, ResponseDecoratorOptions, StreamableFile, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { createReadStream } from "fs";
-import { join } from "path";
 import { UserGuard } from "src/guards/user.guard";
 import { FilesServicePipe } from "src/pipes/FilesServicePipe";
 import { DI } from "src/services/DI";
@@ -17,6 +15,7 @@ export class FilesController {
     @UseGuards(UserGuard)
     @UseInterceptors(FileInterceptor('image'))
     getFile(@UploadedFile(FilesServicePipe) image: Express.Multer.File) {
+
     }
     
     @Delete(':name')
@@ -27,12 +26,14 @@ export class FilesController {
 
     @Get()
     @UseGuards(UserGuard)
-    getFiles(@Res() res) {
+    getCurrentFiles() {
+        return this.DI.servicesFactory.IFilesService.GetFiles();
+    }
 
-        const file = createReadStream(join(process.cwd(), 'uploads/1670359707672-png-transparent-two-checked-flags-racing-flags-auto-racing-racing-flag-miscellaneous-game-flag-png-free-download.webp'));
-        const file2 = createReadStream(join(process.cwd(), 'uploads/1670359707672-png-transparent-two-checked-flags-racing-flags-auto-racing-racing-flag-miscellaneous-game-flag-png-free-download.webp'));
-
-        file.pipe(res);
-        file2.pipe(res)
+    @Get(':imgpath')
+    @UseGuards(UserGuard)
+    getImage(@Param() param, @Res() res) {
+        
+        res.sendFile(param.imgpath, {root: 'uploads'});
     }
 }

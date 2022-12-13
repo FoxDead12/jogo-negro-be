@@ -2,7 +2,7 @@ import { IService } from "../interfaces/entitys/IService";
 
 export class Service implements IService {
     
-    public id: number;
+    public _id: number;
     public name: string;
     public imageUrl: string;
     public active: boolean;
@@ -18,7 +18,7 @@ export class Service implements IService {
         this.active = active;
 
         if(id) {
-            this.id = id
+            this._id = id
         }
     }
 }

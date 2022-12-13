@@ -12,6 +12,27 @@ export class ServiceRepository implements IServiceRepository {
     ) {
         
     }
+
+    async GetAll(): Promise<IService[]> {
+        const result = await this._repository.find();
+        if(result) {
+            
+            const services: IService[] = [];
+            result.forEach((sp) => {
+                const space: IService = {
+                   _id: sp.id,
+                   imageUrl: sp.imageUrl,
+                   name: sp.name,
+                   active: sp.active
+                }
+                services.push(space);
+            })
+            return services;
+        }
+        else {
+            return null;
+        }
+    }
     
     async Delete(id: number): Promise<void> {
         const runner = this._runners[this._transaction];
@@ -24,7 +45,7 @@ export class ServiceRepository implements IServiceRepository {
         if(result) {
 
             const service: IService = {
-                id: result.id,
+                _id: result.id,
                 imageUrl: result.imageUrl,
                 name: result.name,
                 active: result.active
@@ -59,7 +80,7 @@ export class ServiceRepository implements IServiceRepository {
 
     async Update(entity: IService, source?: IService): Promise<void> {
         const dto = {
-            id: entity.id,
+            id: entity._id,
             imageUrl: entity.imageUrl,
             name: entity.name,
             active: entity.active

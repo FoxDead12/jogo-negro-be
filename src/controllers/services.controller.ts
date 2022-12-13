@@ -9,7 +9,8 @@ export class ServiceController {
     
     @Get()
     GetAll() {
-
+        const service = this.DI.servicesFactory.IServiceService;
+        return service.GetAll();
     }
 
     @UseGuards(UserGuard)

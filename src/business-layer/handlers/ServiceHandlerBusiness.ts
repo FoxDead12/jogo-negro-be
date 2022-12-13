@@ -1,7 +1,17 @@
+import { IService } from "../interfaces/entitys/IService";
 import { IServiceHandlerBusiness } from "../interfaces/handlers/IServiceHandlerBusiness";
 import { BaseHandlerBusiness } from "./BaseHandlerBusiness";
 
 export class ServiceHandlerBusiness extends BaseHandlerBusiness implements IServiceHandlerBusiness {
+    
+    async GetAllHandlerStrategy(): Promise<IService> {
+        let result: IService[] ;
+
+        const services = await this._repositoriesFactory.IServiceRepository.GetAll();
+        result = services;
+        
+        return result as any;
+    }
     
     async EditServiceHandlerStrategy(name: string, imageUrl: string, active: boolean, id: number): Promise<void> {
         await this.BaseHandler(async (transaction) => {
@@ -24,7 +34,7 @@ export class ServiceHandlerBusiness extends BaseHandlerBusiness implements IServ
                 throw new Error("SERVICE DOESNT EXIST!")
             }
 
-            await this._repositoriesFactory.IServiceRepository.Delete(service.id);
+            await this._repositoriesFactory.IServiceRepository.Delete(service._id);
         })
     }
     
