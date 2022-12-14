@@ -4,13 +4,22 @@ import { BaseHandlerBusiness } from "./BaseHandlerBusiness";
 
 export class ServiceHandlerBusiness extends BaseHandlerBusiness implements IServiceHandlerBusiness {
     
-    async GetAllHandlerStrategy(): Promise<IService> {
+    async GetActiveHandlerStrategy(): Promise<IService[]> {
+        let result: IService[];
+
+        const spaces = await this._repositoriesFactory.IServiceRepository.GetActive();
+        result = spaces;
+
+        return result;
+    }
+    
+    async GetAllHandlerStrategy(): Promise<IService[]> {
         let result: IService[] ;
 
         const services = await this._repositoriesFactory.IServiceRepository.GetAll();
         result = services;
         
-        return result as any;
+        return result;
     }
     
     async EditServiceHandlerStrategy(name: string, imageUrl: string, active: boolean, id: number): Promise<void> {

@@ -1,8 +1,15 @@
 import { ISpace } from "src/business-layer/interfaces/entitys/ISpace";
+import { IText } from "src/business-layer/interfaces/entitys/IText";
 import { BaseService } from "../BaseService";
 import { ISpaceService } from "../interfaces/space/ISpaceService";
 
 export class SpaceService extends BaseService implements ISpaceService {
+    
+    async GetActive(): Promise<ISpace[]> {
+        const strategy = this._handlerBusinessFactory.ISpaceHandlerBusiness;
+        const result = await strategy.GetActiveHanlderStrategy();
+        return result;
+    }
     
     async GetAll(): Promise<ISpace[]> {
         

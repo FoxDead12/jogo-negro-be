@@ -1,8 +1,18 @@
 import { ISpace } from "../interfaces/entitys/ISpace";
+import { IText } from "../interfaces/entitys/IText";
 import { ISpaceHandlerBusiness } from "../interfaces/handlers/ISpaceHandlerBusiness";
 import { BaseHandlerBusiness } from "./BaseHandlerBusiness";
 
 export class SpaceHandlerBusiness extends BaseHandlerBusiness implements ISpaceHandlerBusiness {
+    
+    async GetActiveHanlderStrategy(): Promise<ISpace[]> {
+        let result: ISpace[];
+
+        const spaces = await this._repositoriesFactory.ISpaceRepository.GetActive();
+        result = spaces;
+
+        return result;
+    }
        
     async GetAllHandlerStrategy(): Promise<ISpace[]> {
         let result: ISpace[];

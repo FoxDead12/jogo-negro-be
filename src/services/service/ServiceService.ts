@@ -4,7 +4,13 @@ import { IServiceService } from "../interfaces/service/IServiceService";
 
 export class ServiceService extends BaseService implements IServiceService {
     
-    async GetAll(): Promise<IService> {
+    async GetActive(): Promise<IService[]> {
+        const strategy = this._handlerBusinessFactory.IServiceHandlerBusiness;
+        const result = await strategy.GetActiveHandlerStrategy();
+        return result;
+    }
+    
+    async GetAll(): Promise<IService[]> {
         const strategy = this._handlerBusinessFactory.IServiceHandlerBusiness;
         const result = await strategy.GetAllHandlerStrategy();
         return result;

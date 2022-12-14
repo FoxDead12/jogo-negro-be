@@ -5,4 +5,5 @@ export interface ISpaceRepository extends IRepositoryBase<ISpace> {
     
     Delete(id: number): Promise<void>;
     GetAll(): Promise<ISpace[]>;
+    GetActive(): Promise<ISpace[]>;
 }

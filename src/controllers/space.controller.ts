@@ -14,6 +14,12 @@ export class SpaceController {
         return  service.GetAll();
     }
 
+    @Get("active")
+    GetActive() {
+        const service = this.DI.servicesFactory.ISpaceService;
+        return service.GetActive();
+    }
+
     @UseGuards(UserGuard)
     @Post()
     Create(@Body() req) {

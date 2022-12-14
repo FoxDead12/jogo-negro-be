@@ -13,6 +13,27 @@ export class ServiceRepository implements IServiceRepository {
         
     }
 
+    async GetActive(): Promise<IService[]> {
+        const result = await this._repository.find({where: {active: true}});
+        if(result) {
+            
+            const services: IService[] = [];
+            result.forEach((sp) => {
+                const space: IService = {
+                   _id: sp.id,
+                   imageUrl: sp.imageUrl,
+                   name: sp.name,
+                   active: sp.active
+                }
+                services.push(space);
+            })
+            return services;
+        }
+        else {
+            return null;
+        }
+    }
+
     async GetAll(): Promise<IService[]> {
         const result = await this._repository.find();
         if(result) {

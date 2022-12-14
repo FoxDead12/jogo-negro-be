@@ -6,4 +6,5 @@ export interface ISpaceService {
     EditSpace(name: string, location: string, imageUrl: string, mapsUrl: string, active: boolean, id: number): Promise<void>;
     DeleteSpace(id: number): Promise<void>;
     GetAll(): Promise<ISpace[]>;
+    GetActive(): Promise<ISpace[]>;
 }

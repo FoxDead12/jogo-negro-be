@@ -6,11 +6,17 @@ var jwt = require('jsonwebtoken');
 
 export class TokenService implements ITokenService {
     
-    private _privateKey: string = "HHH";
+    private _privateKey: string;
+    constructor() {
+        this._privateKey = process.env.privatekey;
+    }
+    
 
     EncryptToken(idUser: string, keepSession: boolean): string {
         const token = new Token(idUser, keepSession);
         const tokenJWT = jwt.sign({token}, this._privateKey);
+
+        console.log();
         return tokenJWT;
     }
 

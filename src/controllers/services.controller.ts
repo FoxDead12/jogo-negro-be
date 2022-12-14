@@ -13,6 +13,12 @@ export class ServiceController {
         return service.GetAll();
     }
 
+    @Get("active")
+    GetActive() {
+        const service = this.DI.servicesFactory.IServiceService;
+        return service.GetActive();
+    }
+
     @UseGuards(UserGuard)
     @Post()
     Create(@Body() req) {

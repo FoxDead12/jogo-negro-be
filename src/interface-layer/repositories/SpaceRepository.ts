@@ -12,6 +12,29 @@ export class SpaceRepository implements ISpaceRepository {
     ) {
         
     }
+    
+    async GetActive(): Promise<ISpace[]> {
+        const result = await this._repository.find({where: {active: true}});
+        if(result) {
+            
+            const spaces: ISpace[] = [];
+            result.forEach((sp) => {
+                const space: ISpace = {
+                   _id: sp.id,
+                   imageUrl: sp.imageUrl,
+                   location: sp.location,
+                   mapsUrl: sp.mapsUrl,
+                   name: sp.name,
+                   active: sp.active
+                }
+                spaces.push(space);
+            })
+            return spaces;
+        }
+        else {
+            return null;
+        }
+    }
 
     async GetAll(): Promise<ISpace[]> {
         const result = await this._repository.find();
